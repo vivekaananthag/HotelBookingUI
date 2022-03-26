@@ -1,0 +1,17 @@
+D:\vivekaa\Machine_Test\code\Booking\Booking.Service\bin\Debug\net6.0\Booking.Service.deps.json
+D:\vivekaa\Machine_Test\code\Booking\Booking.Service\bin\Debug\net6.0\Booking.Service.dll
+D:\vivekaa\Machine_Test\code\Booking\Booking.Service\bin\Debug\net6.0\Booking.Service.pdb
+D:\vivekaa\Machine_Test\code\Booking\Booking.Service\bin\Debug\net6.0\Booking.Interface.dll
+D:\vivekaa\Machine_Test\code\Booking\Booking.Service\bin\Debug\net6.0\Booking.Models.dll
+D:\vivekaa\Machine_Test\code\Booking\Booking.Service\bin\Debug\net6.0\Booking.Interface.pdb
+D:\vivekaa\Machine_Test\code\Booking\Booking.Service\bin\Debug\net6.0\Booking.Models.pdb
+D:\vivekaa\Machine_Test\code\Booking\Booking.Service\obj\Debug\net6.0\Booking.Service.csproj.AssemblyReference.cache
+D:\vivekaa\Machine_Test\code\Booking\Booking.Service\obj\Debug\net6.0\Booking.Service.GeneratedMSBuildEditorConfig.editorconfig
+D:\vivekaa\Machine_Test\code\Booking\Booking.Service\obj\Debug\net6.0\Booking.Service.AssemblyInfoInputs.cache
+D:\vivekaa\Machine_Test\code\Booking\Booking.Service\obj\Debug\net6.0\Booking.Service.AssemblyInfo.cs
+D:\vivekaa\Machine_Test\code\Booking\Booking.Service\obj\Debug\net6.0\Booking.Service.csproj.CoreCompileInputs.cache
+D:\vivekaa\Machine_Test\code\Booking\Booking.Service\obj\Debug\net6.0\Booking.Service.csproj.CopyComplete
+D:\vivekaa\Machine_Test\code\Booking\Booking.Service\obj\Debug\net6.0\Booking.Service.dll
+D:\vivekaa\Machine_Test\code\Booking\Booking.Service\obj\Debug\net6.0\refint\Booking.Service.dll
+D:\vivekaa\Machine_Test\code\Booking\Booking.Service\obj\Debug\net6.0\Booking.Service.pdb
+D:\vivekaa\Machine_Test\code\Booking\Booking.Service\obj\Debug\net6.0\ref\Booking.Service.dll
