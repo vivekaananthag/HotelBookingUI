@@ -15,9 +15,11 @@ namespace Booking.Models.Models
 
         [Display(Name = "To date")]
         [Required(ErrorMessage = "To date is required")]
-        public DateTime ToDate { get; set; }
+        public DateTime ToDate { get; set; }       
 
-        public List<RoomTypeModel> RoomTypes { get; set; }
+        public bool IsSuccess { get; set; }
+                
+        public string? Message { get; set; }
 
     }
 
@@ -25,6 +27,6 @@ namespace Booking.Models.Models
     {
         public int RoomTypeId { get; set; }
 
-        public string RoomTypeName { get; set; }
+        public string? RoomTypeName { get; set; }
     }
 }

@@ -10,7 +10,7 @@ namespace Booking.Interface.Service
     public interface IBookingService
     {
         Task<IEnumerable<BookingModel>> GetBookingsByUserId(string userId);
-        Task<string> AddBooking(AddBookingModel bookingModel, string userId);
+        Task<AddBookingModel> AddBooking(AddBookingModel bookingModel, string userId);
         Task<IEnumerable<RoomTypeModel>> GetRoomTypes();
     }
 }

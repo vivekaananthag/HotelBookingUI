@@ -24,7 +24,7 @@ namespace Booking.Service
             try
             {
                 var bookings = await _bookingDAL.GetBookingsByUserId(userId);
-                var bookingsModel = Mapper.MapBookingDBToModel(bookings.ToList());
+                var bookingsModel = Mapper.MapBookingDBToModel(bookings);
 
                 return bookingsModel;
             }
@@ -40,22 +40,30 @@ namespace Booking.Service
         /// <param name="bookingModel"></param>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public async Task<string> AddBooking(AddBookingModel bookingModel, string userId)
+        public async Task<AddBookingModel> AddBooking(AddBookingModel bookingModel, string userId)
         {
-            var result = string.Empty;
+            var result = new AddBookingModel();
+            result = bookingModel;
+
             var availableRoom = _bookingDAL.GetAvailableRoomForBooking(bookingModel);
             if(availableRoom != null && availableRoom.RoomId > 0)
             {
                 var booking = await _bookingDAL.AddBooking(bookingModel, availableRoom.RoomId, userId);
                 if (booking != null && booking.BookingId > 0)
-                    result = string.Format(Constants.BOOKING_SUCCESS, availableRoom.RoomNumber);
+                {
+                    result.FromDate = booking.FromDate;
+                    result.ToDate = booking.ToDate;
+                    result.RoomTypeId = availableRoom.RoomTypeId;
+                    result.IsSuccess = true;
+                    result.Message = string.Format(Constants.BOOKING_SUCCESS, availableRoom.RoomNumber);
+                }                    
                 else
-                    result = "ERROR";
+                    result.Message = Constants.UNEXPECTED_ERROR;
             }
             else
             {
-                result = Constants.NO_ROOMS_AVAILABLE;
-            }
+                result.Message = Constants.NO_ROOMS_AVAILABLE;
+            }            
             return result;
         }
 

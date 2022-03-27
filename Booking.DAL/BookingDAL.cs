@@ -26,8 +26,8 @@ namespace Booking.DAL
         {
             try
             {
-                return await appDbContext.Bookings.Where(x=>x.UserId == userId)
-                                    .Include(x => x.Room).ThenInclude(x => x.RoomType).ToListAsync();                
+                return await appDbContext.Bookings.Where(x => x.UserId == userId)
+                                    .Include(x => x.Room).ThenInclude(x => x.RoomType).ToListAsync();             
             }
             catch
             {
@@ -98,8 +98,13 @@ namespace Booking.DAL
             }
         }
 
-        public async Task<IEnumerable<RoomType>> GetRoomTypes()
+        public async Task<IEnumerable<RoomType>> GetRoomTypes()        
         {
+            var room = await appDbContext.Rooms.ToListAsync();
+            var roomTypes = appDbContext.RoomTypes;
+            var bookings = appDbContext.Bookings;
+
+            
             return await appDbContext.RoomTypes.ToListAsync();
         }
     }

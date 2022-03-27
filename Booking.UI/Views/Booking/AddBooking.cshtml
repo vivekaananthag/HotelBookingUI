@@ -1,35 +1,47 @@
 ﻿@using Booking.Models.Models
 @model AddBookingModel
 @{
-    ViewData["Title"] = "Create Booking";
+    ViewData["Title"] = "Make a booking";
 }
 <br />
+@Html.ValidationSummary(false, "", new { @class = "text-danger" })
+<div><h3>Make a booking</h3></div> <br />
+@if(Model.IsSuccess)
+{
+    
 
-<form asp-controller="Home" asp-action="Index" method="post">
+    <div class="alert alert-success">
+      <strong>@Model.Message</strong>
+    </div>    
+}
+<form asp-controller="Booking" asp-action="AddBooking" method="post">
     <div class="row">
         <div class="col-lg-4">From date</div>
-        <div class="col-lg-8">
-            <input type="date" asp-for="FromDate" class="form-control" />
+        <div class="col-lg-4">
+            <input type="date" asp-for="FromDate" min="2022-03-26" max="2023-03-26" class="form-control" />
         </div>
     </div>
     <br />
     <div class="row">
         <div class="col-lg-4">To date</div>
-        <div class="col-lg-8">
-            <input type="date" asp-for="ToDate" class="form-control" />
+        <div class="col-lg-4">
+            <input type="date" asp-for="ToDate" min="2022-03-26" max="2023-03-26" class="form-control" />
         </div>
     </div>
     <br />
     <div class="row">
         <div class="col-lg-4">Room type</div>
-        <div class="col-lg-8">
+        <div class="col-lg-4">
             <select asp-for="RoomTypeId" asp-items="@ViewBag.RoomTypes" class="form-control"></select>
         </div>
     </div>
     <br />
     <div class="row">
-        <div class="col-lg-offset-4 col-lg-8">
-            <button type="submit" class="btn btn-primary">Add Booking</button>
+        <div class="col-lg-offset-4 col-lg-4">
+            <button type="submit" class="btn btn-primary">Create booking</button>
+        </div>
+        <div class="col-lg-offset-4 col-lg-4">
+            <button type="button" class="btn btn-secondary" onclick="@("window.location.href='" + @Url.Action("MyBookings", "Booking") + "'");"  >My Bookings</button>
         </div>
     </div>
 

@@ -8,6 +8,7 @@ namespace Booking.Models.Helpers
     {
         public const string BOOKING_SUCCESS = "Thanks for making the booking. Room number {0} has been successfully booked for the selected dates.";
         public const string NO_ROOMS_AVAILABLE = "No rooms available for the selected criteria. Please try a different date or a room type.";
+        public const string UNEXPECTED_ERROR = "An error occurred while creating the booking. Please try again later";
     }
     public static class Mapper
     {
@@ -23,23 +24,25 @@ namespace Booking.Models.Helpers
             return booking;
         }
 
-        public static IEnumerable<BookingModel> MapBookingDBToModel(List<DB.Booking> bookings)
-        {
-            if (bookings == null || bookings.Count > 0) return new List<BookingModel>();
+        public static IEnumerable<BookingModel> MapBookingDBToModel(IEnumerable<DB.Booking> bookings)
+        {            
             var bookingsModel = new List<BookingModel>();
-            foreach (var booking in bookings)
+            if (bookings != null && bookings.Count() > 0)
             {
-                BookingModel bookingModel = new BookingModel
+                foreach (var booking in bookings)
                 {
-                    BookingId = booking.BookingId,
-                    BookingDate = booking.BookingDate,
-                    FromDate = booking.FromDate,
-                    ToDate = booking.ToDate,
-                    RoomNumber = booking.Room != null ? booking.Room.RoomNumber : String.Empty,
-                    RoomType = booking.Room != null && booking.Room.RoomType != null
-                                ? booking.Room.RoomType.RoomTypeName : String.Empty
-                };
-                bookingsModel.Add(bookingModel);
+                    BookingModel bookingModel = new BookingModel
+                    {
+                        BookingId = booking.BookingId,
+                        BookingDate = booking.BookingDate,
+                        FromDate = booking.FromDate,
+                        ToDate = booking.ToDate,
+                        RoomNumber = booking.Room != null ? booking.Room.RoomNumber : String.Empty,
+                        RoomType = booking.Room != null && booking.Room.RoomType != null
+                                    ? booking.Room.RoomType.RoomTypeName : String.Empty
+                    };
+                    bookingsModel.Add(bookingModel);
+                }
             }
             return bookingsModel;
         }

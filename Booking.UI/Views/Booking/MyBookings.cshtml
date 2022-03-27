@@ -1,0 +1,49 @@
+﻿@using Booking.Models.Models
+@model IEnumerable<BookingModel>
+@{
+    ViewData["Title"] = "My Bookings";
+}
+<br />
+<html>
+    <head>
+       <link href="~/css/mvc-grid/mvc-grid.css" rel="stylesheet">
+    </head>
+   
+    <body>
+       
+        <div><h3>My bookings</h3></div> <br />
+
+        @(Html
+    .Grid(Model)
+    .Build(columns =>
+    {
+        columns.Add(model => model.BookingDate.ToShortDateString()).Titled("Booking date");
+        columns.Add(model => model.RoomNumber).Titled("Room number");
+        columns.Add(model => model.RoomType).Titled("Room type");
+        columns.Add(model => model.FromDate.ToShortDateString()).Titled("From date");
+        columns.Add(model => model.ToDate.ToShortDateString()).Titled("To date");
+    })
+    .Using(GridFilterMode.Header)
+    .Empty("No data found")
+    .Filterable()
+    .Sortable()
+     .Pageable(pager =>
+    {
+        pager.PageSizes = new Dictionary<Int32, String> { { 0, "All" }, { 2, "2" }, { 4, "4" } };
+        pager.ShowPageSizes = true;
+        pager.PagesToDisplay = 5;
+        pager.CurrentPage = 1;
+        pager.RowsPerPage = 3;
+    })
+)
+
+        
+       <script src="~/js/mvc-grid/mvc-grid.js"></script>
+
+         <script>
+           document.querySelectorAll(".mvc-grid").forEach(element => new MvcGrid(element));
+        </script>
+
+    </body>
+</html>
+

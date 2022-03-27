@@ -1,4 +1,9 @@
+using Booking.DAL;
+using Booking.Interface.DAL;
+using Booking.Interface.Service;
+using Booking.Service;
 using HotelBookingUI.Data;
+using Booking.Models.Database;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Identity;
@@ -11,6 +16,18 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+builder.Services.AddScoped<IBookingDAL, BookingDAL>();
+builder.Services.AddScoped<IBookingService, BookingService>();
+
+builder.Services.AddDbContext<ApplicationDbContext>(opt =>
+{
+    opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
+builder.Services.AddDbContext<HotelContext>(opt =>
+{
+    opt.UseSqlServer(builder.Configuration.GetConnectionString("HotelDBConnStr"));
+});
 
 builder.Services.AddAuthentication(options =>
 {
